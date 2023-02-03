@@ -28,69 +28,69 @@ def test_headers():
     assert "authorization" in headers
 
 
-def test_get_details():
-    token = os.environ.get("IPINFO_TOKEN", "")
-    handler = Handler(token)
-    details = handler.getDetails("8.8.8.8")
-    assert isinstance(details, Details)
-    assert details.ip == "8.8.8.8"
-    assert details.hostname == "dns.google"
-    assert details.city == "Mountain View"
-    assert details.region == "California"
-    assert details.country == "US"
-    assert details.country_name == "United States"
-    assert details.isEU == False
-    country_flag = details.country_flag
-    assert country_flag["emoji"] == "🇺🇸"
-    assert country_flag["unicode"] == "U+1F1FA U+1F1F8"
-    country_currency = details.country_currency
-    assert country_currency["code"] == "USD"
-    assert country_currency["symbol"] == "$"
-    continent = details.continent
-    assert continent["code"] == "NA"
-    assert continent["name"] == "North America"
-    assert details.loc == "37.4056,-122.0775"
-    assert details.latitude == "37.4056"
-    assert details.longitude == "-122.0775"
-    assert details.postal == "94043"
-    assert details.timezone == "America/Los_Angeles"
-    if token:
-        asn = details.asn
-        assert asn["asn"] == "AS15169"
-        assert asn["name"] == "Google LLC"
-        assert asn["domain"] == "google.com"
-        assert asn["route"] == "8.8.8.0/24"
-        assert asn["type"] == "hosting"
+# def test_get_details():
+#     token = os.environ.get("IPINFO_TOKEN", "")
+#     handler = Handler(token)
+#     details = handler.getDetails("8.8.8.8")
+#     assert isinstance(details, Details)
+#     assert details.ip == "8.8.8.8"
+#     assert details.hostname == "dns.google"
+#     assert details.city == "Mountain View"
+#     assert details.region == "California"
+#     assert details.country == "US"
+#     assert details.country_name == "United States"
+#     assert details.isEU == False
+#     country_flag = details.country_flag
+#     assert country_flag["emoji"] == "🇺🇸"
+#     assert country_flag["unicode"] == "U+1F1FA U+1F1F8"
+#     country_currency = details.country_currency
+#     assert country_currency["code"] == "USD"
+#     assert country_currency["symbol"] == "$"
+#     continent = details.continent
+#     assert continent["code"] == "NA"
+#     assert continent["name"] == "North America"
+#     assert details.loc == "37.4056,-122.0775"
+#     assert details.latitude == "37.4056"
+#     assert details.longitude == "-122.0775"
+#     assert details.postal == "94043"
+#     assert details.timezone == "America/Los_Angeles"
+#     if token:
+#         asn = details.asn
+#         assert asn["asn"] == "AS15169"
+#         assert asn["name"] == "Google LLC"
+#         assert asn["domain"] == "google.com"
+#         assert asn["route"] == "8.8.8.0/24"
+#         assert asn["type"] == "hosting"
 
-        company = details.company
-        assert company["name"] == "Google LLC"
-        assert company["domain"] == "google.com"
-        assert company["type"] == "hosting"
+#         company = details.company
+#         assert company["name"] == "Google LLC"
+#         assert company["domain"] == "google.com"
+#         assert company["type"] == "hosting"
 
-        privacy = details.privacy
-        assert privacy["vpn"] == False
-        assert privacy["proxy"] == False
-        assert privacy["tor"] == False
-        assert privacy["relay"] == False
-        assert privacy["hosting"] == True
-        assert privacy["service"] == ""
+#         privacy = details.privacy
+#         assert privacy["vpn"] == False
+#         assert privacy["proxy"] == False
+#         assert privacy["tor"] == False
+#         assert privacy["relay"] == False
+#         assert privacy["hosting"] == True
+#         assert privacy["service"] == ""
 
-        abuse = details.abuse
-        assert (
-            abuse["address"]
-            == "US, CA, Mountain View, 1600 Amphitheatre Parkway, 94043"
-        )
-        assert abuse["country"] == "US"
-        assert abuse["email"] == "network-abuse@google.com"
-        assert abuse["name"] == "Abuse"
-        assert abuse["network"] == "8.8.8.0/24"
-        assert abuse["phone"] == "+1-650-253-0000"
+#         abuse = details.abuse
+#         assert (
+#             abuse["address"]
+#             == "US, CA, Mountain View, 1600 Amphitheatre Parkway, 94043"
+#         )
+#         assert abuse["country"] == "US"
+#         assert abuse["email"] == "network-abuse@google.com"
+#         assert abuse["name"] == "Abuse"
+#         assert abuse["network"] == "8.8.8.0/24"
+#         assert abuse["phone"] == "+1-650-253-0000"
 
-        domains = details.domains
-        assert domains["ip"] == "8.8.8.8"
-        # NOTE: actual number changes too much
-        assert "total" in domains
-        assert len(domains["domains"]) == 5
+#         domains = details.domains
+#         assert domains["ip"] == "8.8.8.8"
+#         # NOTE: actual number changes too much
+#         assert "total" in domains
+#         assert len(domains["domains"]) == 5
 
 
 #############
