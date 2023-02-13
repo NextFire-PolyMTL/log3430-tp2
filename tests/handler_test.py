@@ -25,7 +25,7 @@ def test_headers():
 
     assert "user-agent" in headers
     assert "accept" in headers
-    assert "authorization" in headers
+    assert headers["authorization"] == 'Bearer mytesttoken'
 
 
 # def test_get_details():
